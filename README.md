@@ -8,6 +8,9 @@
 
 - ## laionから学習データ取得
   - 実行すること
+    - 以下からlaionのメタデータファイルを取得してnifty/laion_meta_file/に格納する
+    - ファイルは"part-00000-xxxxxxx.parquet"という形式で32個あるが、part-00000からpart-00009までの10個を格納する（kaggleアカウントが必要なので持っていない場合などはご連絡ください）
+      - https://www.kaggle.com/datasets/romainbeaumont/laion400m
     - nifty/src/make_laion_data.pyを実行
   - 結果
     - nifty/data/laion/にsplit0, split1, ... , split9と10個のディレクトリが作られる
