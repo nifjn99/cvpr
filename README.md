@@ -32,7 +32,9 @@
 - ## 事前学習
   - 実行すること
     - nifty/Lafite/train_lr_split_data5M.pyとtrain_lr_split_data10M.pyを実行する
-    - 実行方法：`python train_lr_split_data5M.py --gpus=1 --outdir=./../outputs/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_test_clip.zip --test_data=./../data/birds_test_clip.zip --mixing_prob=1.0 --snap=500`
+    - 実行方法
+      - キャプションなし：`python train_lr_split_data5M.py --gpus=1 --outdir=./../outputs/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_test_clip.zip --test_data=./../data/birds_test_clip.zip --mixing_prob=1.0 --snap=500`
+      - キャプションあり：`python train_lr_split_data5M.py --gpus=1 --outdir=./../outputs/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_test_clip.zip --test_data=./../data/birds_test_clip.zip --mixing_prob=0.0 --snap=500`
     - 学習したパラメータは定期的に"network-snapshot-XXXXXX.pkl"に保存され、XXXXXXの部分は学習が進むにつれて大きな値となる。"network-snapshot-010000.pkl"が保存されるまで学習を行う。
   - 結果
     - nifty/outputs/に学習結果が保存される
@@ -43,14 +45,11 @@
   - 実行すること
     - nifty/Lafite/train_lr.pyを実行する
     - 以下の--resumeの引数には事前学習したパラメータのパスを指定する（network-snapshot-010000.pkl）
-    - MS COCO
-      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/mscoco/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/COCO2014_train_CLIP_ViTB32.zip.zip --test_data=./../data/COCO2014_val_CLIP_ViTB32.zip --mixing_prob=0.0 --snap=100 --d_lr=0.001 --resume={事前学習パラメータのパス}`
-      - キャプションなしで学習： キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/mscoco/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/COCO2014_train_CLIP_ViTB32.zip.zip --test_data=./../data/COCO2014_val_CLIP_ViTB32.zip --mixing_prob=1.0 --snap=100 --d_lr=0.001--resume={事前学習パラメータのパス}`
-    - CelebA-HQ
-      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/celeba/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/celeba_train_clip.zip --test_data=./../data/celeba_test_clip.zip --mixing_prob=0.0 --snap=40 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
-      - キャプションなしで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/celeba/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/celeba_train_clip.zip --test_data=./../data/celeba_test_clip.zip --mixing_prob=1.0 --snap=40 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
-    - CUB
-      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/cub/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_train_clip.zip --test_data=./../data/birds_clip_test.zip --mixing_prob=0.0 --snap=10 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
-      - キャプションなしで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/cub/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_train_clip.zip --test_data=./../data/birds_clip_test.zip --mixing_prob=1.0 --snap=10 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
+    - MS COCO（10%）
+      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/mscoco/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/COCO2014_train_CLIP_ViTB32.zip.zip --test_data=./../data/COCO2014_val_CLIP_ViTB32.zip --mixing_prob=0.0 --snap=100 --subset=8261 --d_lr=0.001 --resume={事前学習パラメータのパス}`
+    - CelebA-HQ（10%）
+      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/celeba/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/celeba_train_clip.zip --test_data=./../data/celeba_test_clip.zip --mixing_prob=0.0 --snap=40 --subset=2400 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
+    - CUB（10%）
+      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/cub/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_train_clip.zip --test_data=./../data/birds_clip_test.zip --mixing_prob=0.0 --snap=10 --subset=885 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
   - 学習が収束した時点のFIDで評価
     - FIDは、結果が出力されるディレクトリ内の"metric-fid50k_full.jsonl"に記載されている
