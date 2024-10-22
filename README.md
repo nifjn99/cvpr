@@ -46,7 +46,7 @@
     - nifty/Lafite/train_lr.pyを実行する
     - 以下の--resumeの引数には事前学習したパラメータのパスを指定する（network-snapshot-010000.pkl）
     - MS COCO（10%）
-      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/mscoco/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/COCO2014_train_CLIP_ViTB32.zip.zip --test_data=./../data/COCO2014_val_CLIP_ViTB32.zip --mixing_prob=0.0 --snap=100 --subset=8261 --d_lr=0.001 --resume={事前学習パラメータのパス}`
+      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/mscoco/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/COCO2014_train_CLIP_ViTB32.zip --test_data=./../data/COCO2014_val_CLIP_ViTB32.zip --mixing_prob=0.0 --snap=100 --subset=8261 --d_lr=0.001 --resume={事前学習パラメータのパス}`
     - CelebA-HQ（10%）
       - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/celeba/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/celeba_train_clip.zip --test_data=./../data/celeba_test_clip.zip --mixing_prob=0.0 --snap=40 --subset=2400 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
     - CUB（10%）
