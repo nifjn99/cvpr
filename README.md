@@ -50,6 +50,6 @@
     - CelebA-HQ（10%）
       - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/celeba/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/celeba_train_clip.zip --test_data=./../data/celeba_test_clip.zip --mixing_prob=0.0 --snap=40 --subset=2400 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
     - CUB（10%）
-      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/cub/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_train_clip.zip --test_data=./../data/birds_clip_test.zip --mixing_prob=0.0 --snap=10 --subset=885 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
+      - キャプションで学習：`python train_lr.py --gpus=1 --outdir=./../outputs/cub/ --temp=0.5 --itd=10 --itc=10 --gamma=10 --mirror=1 --data=./../data/birds_train_clip.zip --test_data=./../data/birds_test_clip.zip --mixing_prob=0.0 --snap=10 --subset=885 --d_lr=0.001 --g_lr=0.001 --resume={事前学習パラメータのパス}`
   - 学習が収束した時点のFIDで評価
     - FIDは、結果が出力されるディレクトリ内の"metric-fid50k_full.jsonl"に記載されている
